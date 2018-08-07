@@ -1,0 +1,48 @@
+loop 1
+Java HotSpot(TM) 64-Bit Server VM warning: You have loaded library /usr/local/hadoop-2.2.0/lib/native/libhadoop.so which might have disabled stack guard. The VM will try to fix the stack guard now.
+It's highly recommended that you fix the library with 'execstack -c <libfile>', or link it with '-z noexecstack'.
+Moved: 'hdfs://10.8.1.10:8020/user/recomm/wordsfinder/data/feature/newdata/n_gram_1' to trash at: hdfs://10.8.1.10:8020/user/recomm/.Trash/Current
+Moved: 'hdfs://10.8.1.10:8020/user/recomm/wordsfinder/data/feature/newdata/n_gram_2' to trash at: hdfs://10.8.1.10:8020/user/recomm/.Trash/Current
+Moved: 'hdfs://10.8.1.10:8020/user/recomm/wordsfinder/data/feature/newdata/n_gram_3' to trash at: hdfs://10.8.1.10:8020/user/recomm/.Trash/Current
+Moved: 'hdfs://10.8.1.10:8020/user/recomm/wordsfinder/data/feature/newdata/n_gram_4' to trash at: hdfs://10.8.1.10:8020/user/recomm/.Trash/Current
+Java HotSpot(TM) 64-Bit Server VM warning: You have loaded library /usr/local/hadoop-2.2.0/lib/native/libhadoop.so which might have disabled stack guard. The VM will try to fix the stack guard now.
+It's highly recommended that you fix the library with 'execstack -c <libfile>', or link it with '-z noexecstack'.
+Java HotSpot(TM) 64-Bit Server VM warning: You have loaded library /usr/local/hadoop-2.2.0/lib/native/libhadoop.so which might have disabled stack guard. The VM will try to fix the stack guard now.
+It's highly recommended that you fix the library with 'execstack -c <libfile>', or link it with '-z noexecstack'.
+Moved: 'hdfs://10.8.1.10:8020/user/recomm/wordsfinder/data/feature/data' to trash at: hdfs://10.8.1.10:8020/user/recomm/.Trash/Current
+Java HotSpot(TM) 64-Bit Server VM warning: You have loaded library /usr/local/hadoop-2.2.0/lib/native/libhadoop.so which might have disabled stack guard. The VM will try to fix the stack guard now.
+It's highly recommended that you fix the library with 'execstack -c <libfile>', or link it with '-z noexecstack'.
+pretreatment_process is successful!
+Java HotSpot(TM) 64-Bit Server VM warning: You have loaded library /usr/local/hadoop-2.2.0/lib/native/libhadoop.so which might have disabled stack guard. The VM will try to fix the stack guard now.
+It's highly recommended that you fix the library with 'execstack -c <libfile>', or link it with '-z noexecstack'.
+Moved: 'hdfs://10.8.1.10:8020/user/recomm/wordsfinder/data/feature/count' to trash at: hdfs://10.8.1.10:8020/user/recomm/.Trash/Current
+Java HotSpot(TM) 64-Bit Server VM warning: You have loaded library /usr/local/hadoop-2.2.0/lib/native/libhadoop.so which might have disabled stack guard. The VM will try to fix the stack guard now.
+It's highly recommended that you fix the library with 'execstack -c <libfile>', or link it with '-z noexecstack'.
+count words nums successfully!
+Java HotSpot(TM) 64-Bit Server VM warning: You have loaded library /usr/local/hadoop-2.2.0/lib/native/libhadoop.so which might have disabled stack guard. The VM will try to fix the stack guard now.
+It's highly recommended that you fix the library with 'execstack -c <libfile>', or link it with '-z noexecstack'.
+Moved: 'hdfs://10.8.1.10:8020/user/recomm/wordsfinder/data/feature/lastdata_tmp/n_gram_1' to trash at: hdfs://10.8.1.10:8020/user/recomm/.Trash/Current
+Moved: 'hdfs://10.8.1.10:8020/user/recomm/wordsfinder/data/feature/lastdata_tmp/n_gram_2' to trash at: hdfs://10.8.1.10:8020/user/recomm/.Trash/Current
+Moved: 'hdfs://10.8.1.10:8020/user/recomm/wordsfinder/data/feature/lastdata_tmp/n_gram_3' to trash at: hdfs://10.8.1.10:8020/user/recomm/.Trash/Current
+Moved: 'hdfs://10.8.1.10:8020/user/recomm/wordsfinder/data/feature/lastdata_tmp/n_gram_4' to trash at: hdfs://10.8.1.10:8020/user/recomm/.Trash/Current
+Java HotSpot(TM) 64-Bit Server VM warning: You have loaded library /usr/local/hadoop-2.2.0/lib/native/libhadoop.so which might have disabled stack guard. The VM will try to fix the stack guard now.
+It's highly recommended that you fix the library with 'execstack -c <libfile>', or link it with '-z noexecstack'.
+Moved: 'hdfs://10.8.1.10:8020/user/recomm/wordsfinder/data/feature/feature_tem/n_gram_2' to trash at: hdfs://10.8.1.10:8020/user/recomm/.Trash/Current
+Moved: 'hdfs://10.8.1.10:8020/user/recomm/wordsfinder/data/feature/feature_tem/n_gram_3' to trash at: hdfs://10.8.1.10:8020/user/recomm/.Trash/Current
+Moved: 'hdfs://10.8.1.10:8020/user/recomm/wordsfinder/data/feature/feature_tem/n_gram_4' to trash at: hdfs://10.8.1.10:8020/user/recomm/.Trash/Current
+start add single word in dict
+word features generate successfully!
+words dict  2 -gram is successful!
+words dict  3 -gram is successful!
+words dict  4 -gram is successful!
+add yesterday dict  2000  in dict
+add yesterday dict  4000  in dict
+add yesterday dict  6000  in dict
+add yesterday dict  8000  in dict
+add yesterday dict  10000  in dict
+add yesterday dict  12000  in dict
+add yesterday dict  14000  in dict
+add yesterday dict  16000  in dict
+add yesterday dict  18000  in dict
+get_all_words is successful!
+18-08-06  wordsfinder is successful!

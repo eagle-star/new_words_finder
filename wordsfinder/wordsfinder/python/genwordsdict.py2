@@ -1,0 +1,185 @@
+# _*_ coding:utf-8 _*_
+"""
+    
+    @author kaolafm
+    @create 2018-06-28 17:15
+"""
+
+import numpy as np
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+def gen_stop_dict(inputpath):
+    """
+
+    :param inputpath:
+    :return:
+    """
+    f = open(inputpath, 'r')
+    line = f.readline()
+    pos_stop_words_dict = {}
+    while line:
+        pos_stop_words_dict[line.strip()] = 1
+        line = f.readline()
+
+    return pos_stop_words_dict
+
+def ischeckedword(word, pos_stop_words_dict):
+
+    if u'的' not in word and u'也' not in word and u'了' not in word and u'是' not in word:
+	return True
+    
+    if pos_stop_words_dict.has_key(word):
+	return True
+    else:
+	return False
+
+def get_freedom(freedom):
+
+    if freedom < 1e300:
+        return freedom
+    else:
+        return 0.0001
+
+def filter_words(inputpath, freqthreshold, coagulationthreshold, freedomthreshold, pos_stop_words_dict):
+    """
+    过滤
+    :param inputpath:
+    :param outputpath:
+    :param freqthreshold:
+    :param coagulationthreshold:
+    :param freedomthreshold:
+    :param pos_stop_words_dict
+    :param default:
+    :return:
+    """
+
+    f = open(inputpath, 'r+')
+    line = f.readline()
+
+    #maxfreq, maxcoagulation, maxfreedom = find_max_feature_value(inputpath)
+
+    pos_list = []
+    neg_list = []    
+
+    while line:
+        it = line.split("\t")
+        if len(it) != 5:
+            line = f.readline()
+            continue
+
+        freq_int = int(it[1].strip())
+        coagulation_float = float(it[3].strip())
+        freedom_float = get_freedom(float(it[4].strip()))
+
+        if freq_int >= int(freedomthreshold) and coagulation_float >= float(coagulationthreshold) and freedom_float >= float(freedomthreshold) and ischeckedword(it[0].strip(), pos_stop_words_dict):
+	    pos_list.append(line)
+	else:
+	    neg_list.append(line)            
+        line = f.readline()
+    f.close()
+    return pos_list, neg_list  
+
+def find_max_feature_value(inputpath):
+    """
+    最大值，用于归一化
+    :param inputpath:
+    :return:
+    """
+    f = open(inputpath, 'r+')
+    line = f.readline()
+
+    maxfreq = 0
+    maxcoagulation = 0.0
+    maxfreedom = 0.0
+
+    while line:
+        it = line.split("\t")
+        if len(it) != 5:
+            line = f.readline()
+            continue
+
+        freq = int(it[1].strip())
+        coagulation = float(it[3].strip())
+        freedom = float(it[4].strip())
+
+        maxfreq = max(freq, maxfreq)
+        maxcoagulation = max(coagulation, maxcoagulation)
+        maxfreedom = max(freedom, maxfreedom)
+
+        line = f.readline()
+
+    return maxfreq, maxcoagulation, maxfreedom
+
+def write_from_list(wordlist, outputpath):
+        
+    out = open(outputpath, 'a+')
+    for line in wordlist:
+        out.write(line)
+    out.close()
+
+def sortlist_by_freq(wordlist):
+    return sorted(wordlist, key=lambda x : int(x.split("\t")[int(1)]), reverse=True)
+
+def sort_by_feature(inputpath, outputpath, index, pos_stop_words_dict):
+    """
+    按各个词特征排序
+    :param inputpath:
+    :param outputpath:
+    :param index:
+    :return:
+    """
+    f = open(inputpath, 'r+')
+    line = f.readline()
+    word_feature_array = []
+    nag_feature_array = []
+    while line:
+        it = line.split("\t")
+        if len(it) != 5:
+            line = f.readline()
+            continue
+        # 凝固度  自由度   词频
+        #if float(it[3].strip()) > 0.1 and float(it[4].strip()) >= 0.1 and int(it[1].strip()) > 1 and ischeckedword(it[0], pos_stop_words_dict):
+	if float(it[3].strip()) > 0.1 and float(it[4].strip()) >= 0.1 and int(it[1].strip()) > 1 and ischeckedword(it[0], pos_stop_words_dict):
+            word_feature_array.append(line)
+	else:
+	    nag_feature_array.append(line)
+	line = f.readline()
+
+    array_by_index = []
+    if index == 1:
+        array_by_index = sorted(word_feature_array, key=lambda x : int(x.split("\t")[int(index)]), reverse=True)
+    else:
+        array_by_index = sorted(word_feature_array, key=lambda x : float(x.split("\t")[int(index)]), reverse=True)
+
+    array_by_index_nag = []
+    if index == 1:
+        array_by_index_nag = sorted(nag_feature_array, key=lambda x : int(x.split("\t")[int(index)]), reverse=True)
+    else:
+        array_by_index_nag = sorted(nag_feature_array, key=lambda x : float(x.split("\t")[int(index)]), reverse=True)
+
+    write_from_list(array_by_index, outputpath + "pos_" + str(index))
+    write_from_list(array_by_index_nag, outputpath + "neg_" + str(index))
+    f.close()
+
+
+
+if __name__ == '__main__':
+    # if len(sys.argv) != N:
+    #     print u'filter: 输入参数个数错误'
+    #     exit(1)
+    pos_stop_words_dict = gen_stop_dict("/home/recomm/test_zhoujx/wordsfinder/dict/pos_stop.dict")
+    #sort_by_feature("/home/recomm/test_zhoujx/wordsfinder/data/primary_n_gram_2", "/home/recomm/test_zhoujx/wordsfinder/data/sort_n_gram_2_", 2, pos_stop_words_dict)
+    sort_by_feature("/home/recomm/test_zhoujx/wordsfinder/data/primary_n_gram_3", "/home/recomm/test_zhoujx/wordsfinder/data/sort_n_gram_3_", 2, pos_stop_words_dict)
+    sort_by_feature("/home/recomm/test_zhoujx/wordsfinder/data/primary_n_gram_4", "/home/recomm/test_zhoujx/wordsfinder/data/sort_n_gram_4_", 2, pos_stop_words_dict)
+
+    #print find_max_feature_value("C:\Users\kaolafm\Downloads\primary_n_gram_2")
+
+
+
+
+
+
+
